@@ -1,0 +1,6 @@
+{
+	"surfaces":	"/path/to/surface/data/dir/",
+	"surf_space":	"fsaverage5",
+	"resamp_space":	"fs_LR-deformed_to-fsaverage",
+	"num_vertices":	"32k"
+}
