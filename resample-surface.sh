@@ -16,6 +16,8 @@ atlases='./standard_mesh_atlases'
 # variable of important surfaces
 import_surfs="pial white sphere.reg"
 
+templates_dir="./templates"
+
 # make output directory and workdir
 [ ! -d ./func ] && mkdir -p ./func
 [ ! -d ./tmp ] && mkdir -p ./tmp
@@ -30,19 +32,19 @@ do
     connhem="right"
     wbhem="R"
   fi
-  
+
   data=$(eval "echo \$${connhem}_data")
 
   # copy over data from input
   [ ! -f ./tmp/${i}.data.func.gii ] && cp ${data} ./tmp/${i}.data.func.gii
 
   # convert freesurfer template data
-  mris_convert ${SUBJECTS_DIR}/${surf_space}/surf/${i}.pial ./tmp/${i}.pial.surf.gii
+  mris_convert ${templates_dir}/${surf_space}/surf/${i}.pial ./tmp/${i}.pial.surf.gii
 
   # convert freesurfer template data
   for j in ${import_surfs}
   do
-    [ ! -f ./tmp/${i}.${j}.surf.gii ] && mris_convert ${SUBJECTS_DIR}/${surf_space}/surf/${i}.${j} ./tmp/${i}.${j}.surf.gii
+    [ ! -f ./tmp/${i}.${j}.surf.gii ] && mris_convert ${templates_dir}/${surf_space}/surf/${i}.${j} ./tmp/${i}.${j}.surf.gii
   done
 
   # create midthickness surface of template
