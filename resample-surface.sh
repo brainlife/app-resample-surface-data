@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # set configurable inputs
-surfaces=`jq -r '.surfaces' config.json`
+left_data=`jq -r '.left' config.json`
+right_data=`jq -r '.right' config.json`
 surf_space=`jq -r '.surf_space' config.json`
 resamp_space=`jq -r '.resamp_space' config.json`
 num_vertices=`jq -r '.num_vertices' config.json`
@@ -29,9 +30,11 @@ do
     connhem="right"
     wbhem="R"
   fi
+  
+  data=$(eval "echo \$${connhem}_data")
 
   # copy over data from input
-  [ ! -f ./tmp/${i}.data.func.gii ] && cp ${surfaces}/${connhem}.gii ./tmp/${i}.data.func.gii
+  [ ! -f ./tmp/${i}.data.func.gii ] && cp ${data} ./tmp/${i}.data.func.gii
 
   # convert freesurfer template data
   mris_convert ${SUBJECTS_DIR}/${surf_space}/surf/${i}.pial ./tmp/${i}.pial.surf.gii
