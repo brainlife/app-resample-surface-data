@@ -25,7 +25,7 @@ templates_dir="./templates"
 # loop through hemispheres
 for i in ${hemispheres}
 do
-  if [ ${i} == "lh" ]; then
+  if [[ ${i} == "lh" ]]; then
     connhem="left"
     wbhem="L"
   else
@@ -57,8 +57,7 @@ done
 
 # add resample vertices as datatype tag
 product=""
-product="\"tags\": [ \"$resamp_space\" ]"
-product="\"tags\": [ \"$num_vertices\" ]"
+product="\"tags\": [ \"$resamp_space\","\"$num_vertices"\" ]"
 cat << EOF > product.json
 {
     $product
