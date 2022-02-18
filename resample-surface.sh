@@ -38,15 +38,6 @@ do
   # copy over data from input
   [ ! -f ./tmp/${i}.data.func.gii ] && cp ${data} ./tmp/${i}.data.func.gii
 
-  # convert freesurfer template data
-  mris_convert ${templates_dir}/${surf_space}/surf/${i}.pial ./tmp/${i}.pial.surf.gii
-
-  # convert freesurfer template data
-  for j in ${import_surfs}
-  do
-    [ ! -f ./tmp/${i}.${j}.surf.gii ] && mris_convert ${templates_dir}/${surf_space}/surf/${i}.${j} ./tmp/${i}.${j}.surf.gii
-  done
-
   # create midthickness surface of template
   [ ! -f ./tmp/${i}.midthickness.surf.gii ] && wb_command -surface-average -surf ./tmp/${i}.pial.surf.gii -surf ./tmp/${i}.white.surf.gii ./tmp/${i}.midthickness.surf.gii
 
