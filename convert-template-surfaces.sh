@@ -16,6 +16,8 @@ import_surfs="pial white sphere.reg"
 
 SUBJECTS_DIR="/usr/local/freesurfer/subjects"
 
+cp -R ${SUBJECTS_DIR}/${surf_space} ./
+
 # make output directory and workdir
 [ ! -d ./func ] && mkdir -p ./func
 [ ! -d ./tmp ] && mkdir -p ./tmp
@@ -34,7 +36,7 @@ do
   # convert freesurfer template data
   for j in ${import_surfs}
   do
-    [ ! -f ./tmp/${i}.${j}.surf.gii ] && mris_convert ${SUBJECTS_DIR}/${surf_space}/surf/${i}.${j} ./tmp/${i}.${j}.surf.gii
+    [ ! -f ./tmp/${i}.${j}.surf.gii ] && mris_convert ./${surf_space}/surf/${i}.${j} ./tmp/${i}.${j}.surf.gii
 
     [ ! -f ./tmp/${i}.${j}.surf.gii ] && echo "something went wrong. check logs" && exit 1
   done
