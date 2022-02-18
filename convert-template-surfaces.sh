@@ -14,6 +14,8 @@ atlases='./standard_mesh_atlases'
 # variable of important surfaces
 import_surfs="pial white sphere.reg"
 
+SUBJECTS_DIR="/usr/local/freesurfer/subjects"
+
 # make output directory and workdir
 [ ! -d ./func ] && mkdir -p ./func
 [ ! -d ./tmp ] && mkdir -p ./tmp
@@ -33,4 +35,7 @@ do
   for j in ${import_surfs}
   do
     [ ! -f ./tmp/${i}.${j}.surf.gii ] && mris_convert ${SUBJECTS_DIR}/${surf_space}/surf/${i}.${j} ./tmp/${i}.${j}.surf.gii
+
+    [ ! -f ./tmp/${i}.${j}.surf.gii ] && echo "something went wrong. check logs" && exit 1
   done
+done
