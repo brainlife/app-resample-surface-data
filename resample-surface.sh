@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -x
+set -e
+
 # set configurable inputs
 left_data=`jq -r '.left' config.json`
 right_data=`jq -r '.right' config.json`
@@ -15,8 +18,6 @@ atlases='./standard_mesh_atlases'
 
 # variable of important surfaces
 import_surfs="pial white sphere.reg"
-
-templates_dir="./templates"
 
 # make output directory and workdir
 [ ! -d ./func ] && mkdir -p ./func

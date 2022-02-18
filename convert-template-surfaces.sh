@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -x
+set -e
+
 # set configurable inputs
 surf_space=`jq -r '.surf_space' config.json`
 resamp_space=`jq -r '.resamp_space' config.json`
