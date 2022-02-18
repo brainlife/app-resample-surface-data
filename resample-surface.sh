@@ -16,6 +16,8 @@ atlases='./standard_mesh_atlases'
 # variable of important surfaces
 import_surfs="pial white sphere.reg"
 
+export SUBJECTS_DIR=/usr/local/freesurfer/subjects
+
 # make output directory and workdir
 [ ! -d ./func ] && mkdir -p ./func
 [ ! -d ./tmp ] && mkdir -p ./tmp
