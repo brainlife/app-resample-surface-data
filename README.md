@@ -10,9 +10,9 @@
   <a href="https://github.com/brainlife/app-resample-surface-data/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-lightgrey.svg" alt="MIT license"></a>
 </p>
 
-> 📍 **This branch, `app-v1.0-freesurfer-7.1.1-wb-1.5.0`, is the brainlife.io App Resample surface data from fsaverage space** ([doi:10.25663/brainlife.app.604](https://doi.org/10.25663/brainlife.app.604)).
+> **This branch, `app-v1.0-freesurfer-7.1.1-wb-1.5.0`, is the brainlife.io App Resample surface data from fsaverage space** ([doi:10.25663/brainlife.app.604](https://doi.org/10.25663/brainlife.app.604)).
 
-## 🧠 At a glance
+## At a glance
 
 <!-- brainlife-app:begin (generated from the App manifest; edit the manifest, not this block) -->
 
@@ -22,27 +22,27 @@ Converts the chosen fsaverage template's pial, white and sphere.reg surfaces to 
 
 | | |
 |---|---|
-| 📥 **Inputs** | `neuro/surface/data` |
-| 📤 **Outputs** | `neuro/surface/data` |
-| 🐳 **Container** | `brainlife/freesurfer:7.1.1` |
-| ⚙️ **Resources** | 1 CPUs · 0.5 h walltime |
-| 🔑 **Requires** | `FREESURFER_LICENSE` |
-| 🔗 **Run it** | [doi.org/10.25663/brainlife.app.604](https://doi.org/10.25663/brainlife.app.604) |
+| **Inputs** | `neuro/surface/data` |
+| **Outputs** | `neuro/surface/data` |
+| **Container** | `brainlife/freesurfer:7.1.1` |
+| **Resources** | 1 CPUs · 0.5 h walltime |
+| **Requires** | `FREESURFER_LICENSE` |
+| **Run it** | [doi.org/10.25663/brainlife.app.604](https://doi.org/10.25663/brainlife.app.604) |
 
-#### 📥 Inputs
+#### Inputs
 
 | Input | Datatype | Required | Description |
 |---|---|---|---|
 | `surfaces` | `neuro/surface/data` | yes | Left and right hemisphere surface data (GIFTI) with labels. Data must be on the fsaverage mesh selected by surf_space. |
 
-#### 📤 Outputs
+#### Outputs
 
 | Output | Datatype | Description |
 |---|---|---|
 | `func` | `neuro/surface/data` | Resampled left.gii and right.gii surface data on the chosen fs_LR mesh. |
 
 <details>
-<summary><b>⚙️ Parameters</b> (3)</summary>
+<summary><b>Parameters</b> (3)</summary>
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
@@ -54,15 +54,15 @@ Converts the chosen fsaverage template's pial, white and sphere.reg surfaces to 
 
 <!-- brainlife-app:end -->
 
-## 🚀 Running the App
+## Running the App
 
-### ☁️ On brainlife.io
+### On brainlife.io
 
 Open the App at [doi.org/10.25663/brainlife.app.604](https://doi.org/10.25663/brainlife.app.604), choose a `neuro/surface/data` dataset whose data are on an fsaverage mesh, pick the fsaverage template the data are on (`surf_space`, fsaverage3–7) and the number of output vertices (`num_vertices`: 32k, 59k or 164k), and press **Execute**. The resampled data are archived to your project as a `neuro/surface/data` dataset tagged `resampled`, with the target space and vertex count added as tags.
 
 For each hemisphere the App converts the chosen fsaverage template's pial, white and `sphere.reg` surfaces to GIFTI (`mris_convert`), builds a midthickness surface, and resamples the data onto the `fs_LR-deformed_to-fsaverage` sphere with `wb_command -metric-resample` (adaptive barycentric, area-corrected). The standard spheres from the HCP `standard_mesh_atlases` are included in this repository.
 
-### 💻 Locally
+### Locally
 
 You need [Singularity/Apptainer](https://apptainer.org/), [`jq`](https://jqlang.github.io/jq/) and a [FreeSurfer license](https://surfer.nmr.mgh.harvard.edu/registration.html).
 
@@ -88,7 +88,7 @@ You need [Singularity/Apptainer](https://apptainer.org/), [`jq`](https://jqlang.
    ./main
    ```
 
-## 📦 Outputs
+## Outputs
 
 ```text
 func/
@@ -97,12 +97,12 @@ func/
 product.json    tags with the target space and vertex count
 ```
 
-## 🩺 Troubleshooting
+## Troubleshooting
 
 - **`something went wrong. check logs`**: a template conversion or the resampling step failed. Check that `surf_space` is the fsaverage template the input data are on (its vertex count must match the data).
 - **`Please set FREESURFER_LICENSE in .bashrc`**: export the `FREESURFER_LICENSE` environment variable before running `./main` (brainlife.io provides it automatically).
 
-## 📚 Citing
+## Citing
 
 > [!TIP]
 > If you use this App in your work, please cite the App, the software it builds on and brainlife.io (below). GitHub's **Cite this repository** button gives the App citation in APA and BibTeX.
@@ -113,13 +113,13 @@ product.json    tags with the target space and vertex count
 - Marcus et al. Informatics and Data Mining Tools and Strategies for the Human Connectome Project. *Frontiers in Neuroinformatics* 5 (2011). [doi:10.3389/fninf.2011.00004](https://doi.org/10.3389/fninf.2011.00004)
 - Hayashi S, Caron BA, Heinsfeld AS, et al. brainlife.io: a decentralized and open-source cloud platform to support neuroscience research. *Nature Methods* 21:809–813 (2024). [doi:10.1038/s41592-024-02237-2](https://doi.org/10.1038/s41592-024-02237-2)
 
-## 👥 Authors
+## Authors
 
 - Brad Caron
 
 **Contributors:** Soichi Hayashi
 
-## 💰 Funding
+## Funding
 
 [![Wellcome-226486/Z/22/Z](https://img.shields.io/badge/Wellcome-226486%2FZ%2F22%2FZ-purple.svg)](https://wellcome.org/)
 [![NIH-NINDS-U24NS140384](https://img.shields.io/badge/NIH_NINDS-U24NS140384-green.svg)](https://reporter.nih.gov/project-details/11261037)
@@ -138,6 +138,6 @@ product.json    tags with the target space and vertex count
 
 <sub>brainlife.io is publicly funded, and acknowledging that support helps keep it running. This App was developed with support from Wellcome, the U.S. National Institutes of Health (including the BRAIN Initiative BRAIN CONNECTS program: The Axonal Projectome EXchange, U24NS140384, and the Center for Mesoscale Connectomics, UM1NS132207) and the U.S. National Science Foundation.</sub>
 
-## ⚖️ License
+## License
 
 [MIT](https://github.com/brainlife/app-resample-surface-data/blob/main/LICENSE). Copyright (c) 2020 brainlife.io, The University of Texas at Austin and Indiana University. FreeSurfer and Connectome Workbench are distributed under their own licenses.
