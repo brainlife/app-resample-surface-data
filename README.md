@@ -3,6 +3,35 @@
 
 # Resample surface data from fsaverage space
 
+<!-- brainlife-app:begin (generated from the App manifest; edit the manifest, not this block) -->
+
+**Resamples left and right hemisphere surface data from an fsaverage template mesh to fs_LR (deformed to fsaverage) at 32k, 59k or 164k vertices with FreeSurfer and Connectome Workbench.**
+
+Converts the chosen fsaverage template's pial, white and sphere.reg surfaces to GIFTI (mris_convert), builds midthickness surfaces, and resamples each hemisphere's data with wb_command -metric-resample (ADAP_BARY_AREA). Use it to bring fsaverage-space surface data onto a standard fs_LR mesh.
+
+Run it on brainlife.io: [https://doi.org/10.25663/brainlife.app.604](https://doi.org/10.25663/brainlife.app.604)
+
+| Input | Datatype | Required | Description |
+|---|---|---|---|
+| `surfaces` | `neuro/surface/data` | yes | Left and right hemisphere surface data (GIFTI) with labels. Data must be on the fsaverage mesh selected by surf_space. |
+
+| Output | Datatype | Description |
+|---|---|---|
+| `func` | `neuro/surface/data` | Resampled left.gii and right.gii surface data on the chosen fs_LR mesh. |
+
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `resamp_space` | enum | `fs_LR-deformed_to-fsaverage` | space you would like to resample your data to Options: `fs_LR-deformed_to-fsaverage`. |
+| `num_vertices` | enum | `32k` | number of vertices to resample to Options: `32k`, `59k`, `164k`. |
+| `surf_space` | enum | `fsaverage5` | FreeSurfer fsaverage template (fsaverage3-7) the input data are on; its sphere.reg is the source sphere for resampling. Options: `fsaverage3`, `fsaverage4`, `fsaverage5`, `fsaverage6`, `fsaverage7`. |
+
+Runtime: container `brainlife/freesurfer:7.1.1`; 1 CPUs; 0.5 h walltime; needs `FREESURFER_LICENSE`.
+
+Please cite:
+- Avesani P, McPherson B, Hayashi S, et al. The open diffusion data derivatives, brain data upcycling via integrated publishing of derivatives and reproducible open cloud services. Sci Data 6, 69 (2019). [doi:10.1038/s41597-019-0073-y](https://doi.org/10.1038/s41597-019-0073-y)
+
+<!-- brainlife-app:end -->
+
 This app will will resample surface data to fsaverage space and a user-input number of vertices.
 
 ### Authors
